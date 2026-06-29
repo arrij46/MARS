@@ -1,0 +1,14 @@
+.animation{
+    border: 2px solid black;
+  background-color: turquoise !important;
+}
+.back-btn{
+  background: var(--grey-dark);
+  left: 1rem;
+}
+.styling-header{
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 800;
+}

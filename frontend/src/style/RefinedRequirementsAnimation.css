@@ -1,0 +1,406 @@
+
+
+/* Basic page tweaks */
+body {
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: #f8fafc;
+  color: var(--black);
+}
+
+.refinement-animation{
+    position: absolute;
+    width: 100%;
+    top: 25%;
+}
+.navbar-refinement h2{
+    margin-top: 25px; 
+}
+/* rotation animations */
+@keyframes rotate-slow {
+  from { transform: rotate(0deg) }
+  to { transform: rotate(360deg) }
+}
+@keyframes rotate-fast {
+  from { transform: rotate(0deg) }
+  to { transform: rotate(360deg) }
+}
+@keyframes rotate-med-rev {
+  from { transform: rotate(0deg) }
+  to { transform: rotate(-360deg) }
+}
+@keyframes rotate-vertical {
+  from { transform: rotateX(0deg) rotateY(0deg) }
+  to { transform: rotateX(360deg) rotateY(0deg) }
+}
+
+/* utility classes used by components */
+.animate-rotate-slow { animation: rotate-slow 6s linear infinite; }
+.animate-rotate-fast { animation: rotate-fast 3s linear infinite; }
+.animate-rotate-med-rev { animation: rotate-med-rev 4s linear infinite; }
+.animate-rotate-vertical { animation: rotate-vertical 2.5s linear infinite; }
+
+/* squiggle glow */
+.squiggle-glow {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 6px 12px rgba(99,102,241,0.12));
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: dashin 1.1s ease-out forwards;
+}
+@keyframes dashin {
+  to { stroke-dashoffset: 0; }
+}
+
+/* subtle pulse used for inner elements */
+@keyframes pulse-glow {
+  0% { transform: scale(0.98); opacity: 0.9; }
+  50% { transform: scale(1.02); opacity: 1; }
+  100% { transform: scale(0.98); opacity: 0.9; }
+}
+.squiggle-glow, .squiggle-glow path { animation: pulse-glow 2.5s ease-in-out infinite; }
+
+/* small responsive adjustments */
+
+
+/*animated circles*/
+.animated-circles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.outer-ring {
+  position: absolute;
+  border-radius: 50%;
+  transition: all 0.45s ease;
+}
+
+.outer-ring.active {
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  background: conic-gradient(from 0deg, rgba(16, 185, 129, 0.08), transparent);
+}
+
+.inner-glow {
+  border-radius: 9999px;
+  transition: all 0.45s ease;
+  z-index: 1;
+}
+
+.inner-glow.active {
+  background: linear-gradient(135deg, rgba(99,102,241,0.12), rgba(16,185,129,0.08));
+}
+
+/* Dot orbits */
+.dot-orbit {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Dots */
+.dot {
+  border-radius: 9999px;
+}
+
+.dot-small {
+  margin-top: 6px;
+}
+
+/* Animations */
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotate-fast {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotate-med-rev {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes rotate-vertical {
+  from { transform: rotateX(0deg); }
+  to { transform: rotateX(360deg); }
+}
+
+.animate-rotate-slow { animation: rotate-slow 8s linear infinite; }
+.animate-rotate-fast { animation: rotate-fast 3s linear infinite; }
+.animate-rotate-med-rev { animation: rotate-med-rev 4s linear infinite; }
+.animate-rotate-vertical { animation: rotate-vertical 6s linear infinite; }
+
+/*animated progress bar*/
+.animated-progress-bar {
+  position: relative;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.progress-track {
+  position: relative;
+  height: 10px;
+  width: 100%;
+}
+
+.progress-track-bg {
+  height: 8px;
+  width: 100%;
+  background-color: var(--grey-dark); /* bg-secondary fallback */
+  opacity: 0.15;
+  border-radius: 9999px;
+}
+
+.progress-track-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 8px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, rgba(16,185,129,0.9),var(--blue-medium) ,var(--blue-dark-hover));
+  transition: width 0.2s ease-out;
+  box-shadow: 0 6px 18px rgba(99,102,241,0.12);
+}
+
+.progress-track-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 14px;
+  border-radius: 9999px;
+  transform: translateY(-3px);
+  filter: blur(6px);
+  opacity: 0.35;
+  background: linear-gradient(90deg, var(--green-dark), var(--blue-darkest));
+  transition: width 0.2s ease-out;
+  pointer-events: none;
+}
+
+/* .progress-points {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin-top: 1rem;
+} */
+.progress-points {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 5; /* higher than progress bar */
+}
+
+.progress-bottom {
+
+  text-align: center;
+  margin-top: 9rem;
+}
+
+.processing-complete {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  background-color: var(--blue-light); /* bg-success bg-opacity-10 */
+}
+
+.processing-complete i {
+  font-size: 1.25rem;
+}
+
+.processing-complete span {
+  font-weight: 500;
+  color: var(--green-dark); /* text-success */
+}
+
+/*progress point*/
+.progress-point-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.progress-point-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height:100px;
+}
+
+.progress-node {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 9999px;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.progress-node.inactive {
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border: 2px solid var(--black);
+  box-shadow: none;
+}
+
+.progress-node.active {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(180deg, rgba(16,185,129,0.9) ,var(--blue-dark),var(--blue-dark));
+  box-shadow: 0 10px 20px var(--green-dark);
+}
+
+.progress-node.completed {
+  width: 25px;
+  height: 25px;
+  background-color: var(--blue-dark);
+  box-shadow: 0 6px 12px var(--green-light);
+}
+
+.progress-label {
+  margin-top: 0.5rem;
+  text-align: center;
+  width: 12rem;
+  display: block;
+  font-size: medium;
+}
+
+.progress-label.active {
+  color: var(--black);
+  font-weight: bold; /* fw-semibold */
+}
+
+.progress-label.completed {
+  color: var(--grey-dark); /* text-primary */
+}
+
+.progress-label.inactive {
+  color: var(--grey-dark); /* text-muted */
+}
+
+/*squiggly circles*/
+.squiggly-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.squiggle-glow {
+  fill: none;
+  stroke-width: 2;
+  transition: all 0.6s ease;
+}
+
+/* Sizes */
+.squiggly-sm {
+  width: 64px;
+  height: 64px;
+}
+
+.squiggly-md {
+  width: 96px;
+  height: 96px;
+}
+
+.squiggly-lg {
+  width: 128px;
+  height: 128px;
+}
+
+/* Active/Inactive states */
+.squiggly-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.squiggly-inactive {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+
+
+/*updates*/
+
+/* Progress points should be in front of bar */
+.progress-points {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute; /* changed from relative */
+  top: -28px; /* lifts points above the bar */
+  left: 0;
+  width: 100%;
+  z-index: 5;
+}
+
+/* Make progress bar container relative for points to position over it */
+.animated-progress-bar {
+  position: relative;
+  padding-top: 2rem; /* give space for points above */
+  padding-bottom: 1rem;
+}
+
+/* Optional: adjust small nodes */
+.progress-node.inactive,
+.progress-node.completed,
+.progress-node.active {
+  z-index: 10;
+}
+
+/* animated circles wrapper */
+.animated-circles-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+/* Progress points appear in front of the bar */
+.progress-points {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: -15px; /* lifts points above bar */
+  left: 0;
+  width: 100%;
+  z-index: 5; /* above bar */
+}
+
+/* Animated circles */
+.animated-circles-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}

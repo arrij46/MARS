@@ -1,0 +1,117 @@
+# Siamese BERT – Requirement Pair Classification
+
+A **Siamese MPNet-based model** for identifying semantic relationships between requirement pairs — classifying them as **Duplicate**, **Conflict**, or **Neutral**.
+
+---
+
+## Overview
+
+This project fine-tunes a **Siamese BERT architecture (mpnet-base-v2)** for **requirement analysis**.
+It helps detect overlapping, contradictory, or unrelated requirements in complex system specifications.
+
+---
+
+## Model Architecture
+
+| Component               | Description                                    |             |                 |
+| ----------------------- | ---------------------------------------------- | ----------- | --------------- |
+| **Backbone**            | `mpnet-base-v2`                                |             |                 |
+| **Pooling**             | Mean pooling                                   |             |                 |
+| **Feature Combination** | `[emb1, emb2,                                  | emb1 - emb2 | , emb1 * emb2]` |
+| **Classifier**          | 3 Fully Connected layers + BatchNorm + Dropout |             |                 |
+| **Output Classes**      | `Duplicate`, `Conflict`, `Neutral`             |             |                 |
+
+---
+
+## Training Configuration
+
+| Parameter     | Value                              |
+| ------------- | ---------------------------------- |
+| Dataset       | 29,999 requirement pairs           |
+| Split         | 80% train / 20% validation         |
+| Batch Size    | 16                                 |
+| Learning Rate | 2e-5                               |
+| Epochs        | 11                                 |
+| Optimizer     | AdamW                              |
+| Scheduler     | Linear Warmup & Decay              |
+| Loss          | CrossEntropy (weighted)            |
+| Framework     | PyTorch + HuggingFace Transformers |
+
+---
+
+## Results
+
+| Metric                  | Score      |
+| ----------------------- | ---------- |
+| **Validation Accuracy** | **88.41%** |
+| **Weighted F1 Score**   | **0.8808** |
+| **Best Validation F1**  | **0.8842** |
+
+**Per-class performance:**
+
+| Label     | Precision | Recall | F1   | Support |
+| --------- | --------- | ------ | ---- | ------- |
+| Duplicate | 0.98      | 0.66   | 0.79 | 1823    |
+| Conflict  | 0.76      | 0.99   | 0.86 | 2117    |
+| Neutral   | 0.99      | 0.98   | 0.98 | 2059    |
+
+---
+
+## Repository Structure
+
+```
+trainedModel/
+├── siamese_model.pth             # Trained model checkpoint
+├── model_config.json             # Architecture details
+├── training_metadata.json        # Training logs and metrics
+├── tokenizer/                    # Tokenizer files
+├── bert_config/                  # Base model config
+├── training_history.png          # Training curves
+├── confusion_matrix_validation_set.png
+└── README.md                     # Model documentation
+```
+
+---
+
+## Quick Inference
+
+```python
+import torch
+from transformers import AutoTokenizer, AutoModel
+from model import SiameseBERT
+
+tokenizer = AutoTokenizer.from_pretrained('./trainedModel/tokenizer')
+bert_model = AutoModel.from_pretrained('./trainedModel/bert_config')
+model = SiameseBERT(bert_model, num_classes=3, dropout_rate=0.3, pooling_strategy='mean')
+model.load_state_dict(torch.load('./trainedModel/siamese_model.pth')['model_state_dict'])
+model.eval()
+
+req1 = "The UAV shall operate within 10 km."
+req2 = "The drone must stay within 10 kilometers of the controller."
+
+inputs1 = tokenizer(req1, return_tensors='pt', truncation=True, padding=True)
+inputs2 = tokenizer(req2, return_tensors='pt', truncation=True, padding=True)
+
+with torch.no_grad():
+    outputs = model(**inputs1, **inputs2)
+    print(torch.argmax(outputs, dim=1))
+```
+
+---
+
+## Summary
+
+| Item            | Detail                         |
+| --------------- | ------------------------------ |
+| **Model**       | Siamese MPNet (mean pooling)   |
+| **Dataset**     | 29,999 requirement pairs       |
+| **Accuracy**    | 88.41%                         |
+| **Weighted F1** | 0.884                          |
+| **Labels**      | Duplicate / Conflict / Neutral |
+| **Framework**   | PyTorch + Transformers         |
+
+---
+
+## Citation / Credits
+
+Developed for **automated requirement analysis** — detecting semantic conflicts and redundancy using **Siamese BERT-based NLP techniques**.

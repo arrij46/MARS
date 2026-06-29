@@ -1,0 +1,54 @@
+============================================================
+INITIALIZING SIAMESE BERT TRAINER
+============================================================
+Using device: cuda
+Loading BERT model and tokenizer...
+============================================================
+SIAMESE BERT TRAINING
+============================================================
+Starting fresh training...
+Loaded 29999 samples from JSON
+Using columns: Requirement1, Requirement2, Label
+
+Loaded dataset with 29999 samples
+
+Label distribution:
+Label
+Conflict     10733
+Neutral       9995
+Duplicate     9271
+Name: count, dtype: int64
+
+
+============================================================
+TRAINING COMPLETED!
+Best validation F1 score: 0.8842
+Total epochs trained: 11
+============================================================
+Training history plot saved to: trainedModel/training_history.png
+
+Validation Set Classification Report:
+============================================================
+              precision    recall  f1-score   support
+
+   Duplicate       0.98      0.66      0.79      1823
+    Conflict       0.76      0.99      0.86      2117
+     Neutral       0.99      0.98      0.98      2059
+
+    accuracy                           0.88      5999
+   macro avg       0.91      0.87      0.88      5999
+weighted avg       0.91      0.88      0.88      5999
+
+
+Overall Accuracy: 88.41%
+Weighted F1 Score: 0.8808
+
+============================================================
+SAVING FINAL MODEL PACKAGE
+============================================================
+
+Saving complete model to: trainedModel/
+  Training metadata saved: trainedModel/training_metadata.json
+  README saved: trainedModel/README.md
+
+Complete model package saved successfully!

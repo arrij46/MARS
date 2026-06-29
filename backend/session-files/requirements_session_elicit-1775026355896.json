@@ -1,0 +1,16 @@
+{
+  "baseline": "Project Title: Fitness Tracking App\n\nDescription: An app that helps to manage your fitness, including exercise guidance, calorie counting, and diet plans",
+  "requirements_list": [],
+  "baseline_collected": true,
+  "aspects_covered": [],
+  "baseline_aspects": [
+    "User roles and authentication",
+    "Core functionality",
+    "Data management",
+    "Performance requirements",
+    "Security considerations",
+    "Integration needs",
+    "User interface"
+  ],
+  "timestamp": "2026-04-01T11:52:36.780037"
+}

@@ -1,0 +1,689 @@
+/* ───────────────────────────── Google Fonts Import ───────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Clash Display', 'Plus Jakarta Sans', sans-serif;
+  color: #0a1733;
+}
+
+.elicitation-container {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  padding-top: 5rem;
+  transition: grid-template-columns 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+  background: #f6f8ff; /* Soft background matching dashboard panel */
+}
+
+/* ───────────────────────────── Navbar ───────────────────────────── */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5rem;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1.5px solid #eef1f8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.navbar button {
+  padding: 12px 20px;
+  border: none;
+  margin: 0;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  position: absolute;
+  top: 1.25rem;
+  color: white;
+  font-size: 0.88rem;
+  letter-spacing: 0.01em;
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+}
+
+.end-elicitation {
+  background: linear-gradient(135deg, #1a4dd4, #4a80f5);
+  box-shadow: 0 4px 18px rgba(74, 128, 245, 0.35);
+  right: 2rem;
+}
+
+.end-elicitation:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(74, 128, 245, 0.45);
+}
+
+.back-btn {
+  background: #f0f3fb;
+  color: #2e3d63 !important;
+  border: 1.5px solid #e4e8f4;
+  left: 2rem;
+}
+
+.back-btn:hover {
+  background: #e4e9f6;
+  transform: translateY(-2px);
+}
+
+/* ───────────────────────────── Left Sidebar ───────────────────────────── */
+.left-sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  background: #ffffff;
+  border-right: 1.5px solid #eef1f8;
+  overflow: hidden;
+  flex: 0 0 250px;
+  z-index: 10;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.02);
+}
+
+.sidebar-header {
+  padding: 1.5rem 1.25rem;
+  border-bottom: 1.5px solid #eef1f8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  flex: 0 0 auto;
+}
+
+.sidebar-header h3 {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: -0.3px;
+}
+
+.req-count {
+  background: #1a4dd4;
+  color: white;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(26, 77, 212, 0.4);
+}
+
+.left-requirements-list {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 1rem;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-height: 0;
+}
+
+/* Custom Scrollbar for lists */
+.left-requirements-list::-webkit-scrollbar,
+.conversation-container::-webkit-scrollbar {
+  width: 6px;
+}
+.left-requirements-list::-webkit-scrollbar-thumb,
+.conversation-container::-webkit-scrollbar-thumb {
+  background: #d1d8e8;
+  border-radius: 10px;
+}
+
+.empty-sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  padding: 2rem;
+}
+
+.empty-sidebar-icon {
+  font-size: 3rem;
+  color: #dbe2f0;
+  margin-bottom: 0.75rem;
+}
+
+.empty-sidebar p {
+  font-size: 0.9rem;
+  margin: 0;
+  color: #7c8aaa;
+  font-weight: 500;
+}
+
+.req-item {
+  background: #ffffff;
+  border: 1.5px solid #e4e8f2;
+  border-radius: 14px;
+  padding: 1rem;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.req-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
+  border-color: #cdd5e8;
+}
+
+.req-view-mode {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.req-text {
+  flex: 1;
+  font-size: 0.85rem;
+  color: #000000;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.req-actions {
+  display: flex;
+  gap: 0.35rem;
+  flex: 0 0 auto;
+}
+
+.req-edit-mode {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.req-edit-input {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1.5px solid #e4e8f2;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  background: #fafbff;
+  transition: all 0.2s ease;
+}
+
+.req-edit-input:focus {
+  outline: none;
+  border-color: #4a80f5;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(74, 128, 245, 0.12);
+}
+
+.req-edit-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.req-btn {
+  padding: 0.4rem 0.6rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.edit-btn { background: #fdf3c6; color: #b4850d; padding: 0.4rem; }
+.edit-btn:hover { background: #fce588; color: #8a6405; }
+.delete-btn { background: #fee2e2; color: #dc2626; padding: 0.4rem; }
+.delete-btn:hover { background: #fecaca; color: #b91c1c; }
+.save-btn { background: #dcfce7; color: #15803d; flex: 1; }
+.save-btn:hover { background: #bbf7d0; color: #166534; }
+.cancel-btn { background: #f3f4f6; color: #4b5563; flex: 1; }
+.cancel-btn:hover { background: #e5e7eb; color: #374151; }
+
+/* ───────────────────────────── Chat Section ───────────────────────────── */
+.chat-section {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  background: #f6f8ff;
+}
+
+.top-bar {
+  padding: 1.25rem 3rem;
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  border-bottom: 1.5px solid #eef1f8;
+  background: #ffffff;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+  z-index: 5;
+}
+
+.icon-logo {
+  width: 42px;
+  height: 42px;
+  color: #1a4dd4;
+}
+
+.top-bar h3 {
+  font-size: 1.3rem;
+  margin: 0 0 4px;
+  letter-spacing: -0.4px;
+}
+
+.top-bar p {
+  margin: 0;
+  color: #7c8aaa;
+  font-size: 0.9rem;
+}
+
+.conversation-container {
+  flex: 1 1 auto;
+  padding: 2rem 3rem 1.5rem 8rem;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+}
+
+.conversation-container .message {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  margin: 0.75rem 0;
+}
+
+.conversation-container .message.user {
+  flex-direction: row-reverse;
+  margin-left: auto;
+  width: fit-content;
+}
+
+.conversation-container .message.bot {
+  flex-direction: row;
+  margin-right: auto;
+  width: fit-content;
+}
+
+.icon-user, .icon-bot {
+  min-width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  padding: 0.7rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.icon-user { background: linear-gradient(135deg, #1a4dd4, #4a80f5); }
+.icon-bot { background: linear-gradient(135deg, #0b3d2e, #14614b); }
+
+/* Base text sizing for both user and bot */
+.conversation-container .message .text-user,
+.conversation-container .message .markdown-body {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  max-width: 75%;
+}
+
+/* 1. User Message (Keep the blue bubble) */
+.conversation-container .message.user p {
+  margin: 0;
+  padding: 14px 20px;
+  border-radius: 20px;
+  border-bottom-right-radius: 6px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  background: linear-gradient(135deg, #1a4dd4, #4a80f5);
+  color: white;
+  user-select: text;
+  white-space: pre-wrap; /* Preserves line breaks and spacing in user messages */
+}
+
+/* 2. Bot Message (Remove boxes entirely) */
+.conversation-container .message.bot .markdown-body,
+.conversation-container .message.bot p {
+  background: transparent;
+  color: #2e3d63;
+  border: none;
+  box-shadow: none;
+  padding: 0; /* Removes the bulky padding */
+  margin: 0;
+  user-select: text;
+  /* Single newlines in model text (e.g. bullet lines) render as line breaks*/
+  white-space: pre-line;
+}
+
+/* ───────────────────────────── Chat Input ───────────────────────────── */
+.input-container {
+  flex: 0 0 auto;
+  padding: 1.5rem 3rem 1.5rem 8rem;
+  background: #f6f8ff;
+  border-top: 1.5px solid #eef1f8;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 -10px 30px rgba(0,0,0,0.02);
+}
+
+.input-container p {
+  margin: 0;
+  padding-left: 0.5rem;
+  color: #b4bcce;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.send-message {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.input-container form {
+  flex: 1;
+  width: 100%;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 16px 20px;
+  font-size: 0.95rem;
+  border-radius: 16px;
+  border: 1.5px solid #e4e8f2;
+  background: #fafbff;
+  color: #0a1733;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.input-container input:focus {
+  border-color: #4a80f5;
+  background: #ffffff;
+  box-shadow: 0 0 0 3.5px rgba(74, 128, 245, 0.12);
+}
+
+.input-container input::placeholder {
+  color: #b4bcce;
+}
+
+.icon-send {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #1a4dd4;
+}
+
+.icon-button {
+  all: unset;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border-radius: 12px;
+  transition: background-color 0.2s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  background: #f6f8ff;
+  border: 1.5px solid transparent;
+}
+
+.icon-button:hover {
+  background-color: #f0f3fb;
+  border-color: #e4e8f4;
+  transform: scale(1.05) translateY(-2px);
+}
+
+.attachment-icon {
+  font-size: 1.4rem;
+  color: #6a7491;
+  transition: color 0.2s ease;
+}
+
+.icon-button:hover .attachment-icon {
+  color: #2e3d63;
+}
+
+/* ───────────────────────────── Empty Conversation ───────────────────────────── */
+.empty-conversation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #7c8aaa;
+  text-align: center;
+  animation: fadeIn 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.empty-conversation-icon {
+  font-size: 4.5rem;
+  color: #dbe2f0;
+  margin-bottom: 16px;
+}
+
+.empty-conversation p {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #6a7491;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.sidebar-toggle-btn {
+  background: #f0f3fb;
+  color: #2e3d63 !important;
+  border: 1.5px solid #e4e8f4;
+  left: 2rem;
+  z-index: 101;
+}
+
+.sidebar-toggle-btn:hover {
+  background: #e4e9f6;
+  transform: translateY(-2px);
+}
+
+/* ───────────────────────────── Popup ───────────────────────────── */
+.requirements-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(10, 23, 51, 0.4);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.requirements-popup-content {
+  background: white;
+  border-radius: 24px;
+  width: 90%;
+  max-width: 550px;
+  max-height: 80vh;
+  overflow-y: auto;
+  animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 30px;
+  border-bottom: 1.5px solid #eef1f8;
+  background: #ffffff;
+  border-radius: 24px 24px 0 0;
+}
+
+.popup-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #0a1733;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.popup-body ul { margin-left: 1rem; color: #2e3d63; }
+.popup-body p { color: #2e3d63; padding: 1.5rem 2rem; line-height: 1.6; }
+
+.popup-close-btn {
+  background: #f2f4fb;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  color: #6a7491;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-close-btn:hover {
+  background: #e2e6f4;
+  color: #0d1f4c;
+  transform: scale(1.05);
+}
+
+.upload-btn {
+  background: linear-gradient(135deg, #1a4dd4, #4a80f5);
+  color: white;
+  border: none;
+  margin: 0 30px 24px 0;
+  padding: 14px 24px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+  box-shadow: 0 4px 18px rgba(74, 128, 245, 0.35);
+}
+
+.upload-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(74, 128, 245, 0.45);
+}
+
+.popup-checkbox-div {
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  gap: 12px;
+  margin-bottom: 1.5rem !important;
+}
+
+.pop-checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #1a4dd4;
+}
+
+/* markdown styling */
+.markdown-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* Space between paragraphs and lists */
+}
+
+.markdown-body p {
+  margin: 0; /* Prevents double margins inside chat bubbles */
+}
+
+.markdown-body ul, 
+.markdown-body ol {
+  margin: 0;
+  padding-left: 1.5rem; /* Indent lists properly */
+}
+
+.markdown-body li {
+  margin-bottom: 0.25rem;
+}
+
+.markdown-body strong {
+  font-weight: 600; /* Ensures bold text stands out */
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0.35rem 0 0.15rem;
+  color: #0a1733;
+}
+
+.markdown-body pre {
+  margin: 0.5rem 0 0;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  background: #eef2fb;
+  border: 1px solid #e4e8f2;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.markdown-body code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.88em;
+  background: #eef2fb;
+  padding: 0.12rem 0.35rem;
+  border-radius: 6px;
+}
+
+.markdown-body pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.markdown-body blockquote {
+  margin: 0.35rem 0;
+  padding-left: 0.75rem;
+  border-left: 3px solid #cdd5e8;
+  color: #4b5563;
+}
+
+.markdown-body a {
+  color: #1a4dd4;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.markdown-body hr {
+  border: none;
+  border-top: 1px solid #e4e8f2;
+  margin: 0.75rem 0;
+}

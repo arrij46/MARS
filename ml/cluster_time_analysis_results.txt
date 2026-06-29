@@ -1,0 +1,10 @@
+RUNTIME ANALYSIS REPORT
+==================================================
+model_loading_time: 20.9618 seconds
+read_requirements_time: 0.0029 seconds
+generate_embeddings_time: 0.5078 seconds
+clustering_time: 0.0456 seconds
+generate_pairs_time: 0.0001 seconds
+siamese_analysis_time: 0.0136 seconds
+==================================================
+Total execution time: 21.5318 seconds

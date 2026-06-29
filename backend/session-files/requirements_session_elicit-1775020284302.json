@@ -1,0 +1,26 @@
+{
+  "baseline": "Attendance Management System",
+  "requirements_list": [
+    "manage attendance records for students",
+    "allow teachers to manage attendance records",
+    "the system shall support colleges",
+    "the system shall support schools",
+    "allow admin users to create attendance records",
+    "sort attendance records by roll number"
+  ],
+  "baseline_collected": true,
+  "aspects_covered": [
+    "User roles and authentication",
+    "User interface"
+  ],
+  "baseline_aspects": [
+    "User roles and authentication",
+    "Core functionality",
+    "Data management",
+    "Performance requirements",
+    "Security considerations",
+    "Integration needs",
+    "User interface"
+  ],
+  "timestamp": "2026-04-01T10:16:01.055424"
+}

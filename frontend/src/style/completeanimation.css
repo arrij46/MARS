@@ -1,0 +1,483 @@
+/* ========================================
+   ROOT & BACKGROUND
+   ======================================== */
+
+.ca-root {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--theme-gradient);
+}
+
+/* Decorative floating circles matching splash */
+.ca-bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.ca-bg-circle--tl {
+  width: 380px;
+  height: 380px;
+  top: -110px;
+  left: -110px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.ca-bg-circle--br {
+  width: 300px;
+  height: 300px;
+  bottom: -80px;
+  right: -80px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ========================================
+   MAIN LAYOUT
+   ======================================== */
+
+.ca-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  z-index: 1;
+}
+
+/* ========================================
+   SVG CIRCLE CONTAINER
+   ======================================== */
+
+.ca-svg-container {
+  position: relative;
+  width: min(750px, 95vmin);
+  height: min(750px, 95vmin);
+  margin: 0 auto;
+}
+
+.ca-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* ========================================
+   PROGRESS ARC
+   ======================================== */
+
+.ca-progress-arc {
+  transition: stroke-dashoffset 0.06s linear;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.3));
+}
+
+/* ========================================
+   NODE STATES
+   ======================================== */
+
+.ca-node-active {
+  animation: nodeActivePulse 1.8s ease-in-out infinite;
+}
+
+.ca-node-pulse {
+  animation: ringPulse 1.8s ease-out infinite;
+}
+
+.ca-node-glow {
+  animation: glowFade 2s ease-in-out infinite;
+}
+
+.ca-node-glow-active {
+  animation: glowFadeActive 1.8s ease-in-out infinite;
+}
+
+@keyframes nodeActivePulse {
+  0%, 100% { r: 7; opacity: 0.85; }
+  50% { r: 8; opacity: 1; }
+}
+
+@keyframes ringPulse {
+  0% { r: 10; opacity: 0.6; }
+  70% { r: 18; opacity: 0; }
+  100% { r: 10; opacity: 0; }
+}
+
+@keyframes glowFade {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes glowFadeActive {
+  0%, 100% { opacity: 0.4; r: 10; }
+  50% { opacity: 0.7; r: 14; }
+}
+
+/* ========================================
+   NODE LABELS
+   ======================================== */
+
+.ca-node-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  fill: rgba(255, 255, 255, 1);
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  transition: fill 0.4s ease;
+}
+
+.ca-node-label--active {
+  fill: rgba(255, 255, 255, 1);
+  font-weight: 800;
+}
+
+.ca-node-label--pending {
+  fill: rgba(255, 255, 255, 0.32);
+}
+
+/* ========================================
+   CENTER CONTENT
+   ======================================== */
+
+.ca-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 42%;
+  overflow: visible;
+}
+
+.ca-center-anim {
+  animation: centerFadeIn 0.5s ease forwards;
+}
+
+@keyframes centerFadeIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.ca-percent {
+  font-size: clamp(14px, 2.6vmin, 22px);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 1);
+}
+
+/* ========================================
+   STATUS LINE
+   ======================================== */
+
+.ca-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: clamp(11px, 1.4vmin, 14px);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 1);
+  text-transform: uppercase;
+  animation: statusFadeIn 0.6s ease forwards;
+}
+
+@keyframes statusFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ca-status-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  animation: dotPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.4); }
+}
+
+/* ========================================
+   CARD BASE
+   ======================================== */
+
+.card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 6px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  backdrop-filter: blur(4px);
+}
+
+.card-line {
+  height: 2px;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 2px;
+  width: 100%;
+}
+
+.card-line.short {
+  width: 60%;
+}
+
+/* ========================================
+   STAGE 1: CONFLICT DETECTION
+   ======================================== */
+
+.center-anim {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.conflict-detect {
+  width: 120px;
+  height: 80px;
+}
+
+.conflict-detect .card-a {
+  width: 62px;
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  animation: conflictShake 0.6s ease-in-out infinite alternate;
+}
+
+.conflict-detect .card-b {
+  width: 62px;
+  position: absolute;
+  right: 8px;
+  top: 18px;
+  animation: conflictShake 0.6s ease-in-out infinite alternate-reverse;
+}
+
+.conflict-glow {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,200,100,0.2) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: conflictGlow 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes conflictShake {
+  from { transform: translateX(0) rotate(-1deg); }
+  to { transform: translateX(3px) rotate(1deg); }
+}
+
+@keyframes conflictGlow {
+  from { opacity: 0.4; transform: translate(-50%, -50%) scale(0.9); }
+  to { opacity: 0.9; transform: translate(-50%, -50%) scale(1.2); }
+}
+
+/* ========================================
+   STAGE 2: CONFLICT RESOLUTION
+   ======================================== */
+
+.conflict-resolve {
+  width: 140px;
+  height: 60px;
+  gap: 6px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.conflict-resolve .card-merge-a {
+  width: 42px;
+  animation: mergeLeft 1.6s ease-in-out infinite;
+}
+
+.conflict-resolve .card-merge-b {
+  width: 42px;
+  animation: mergeRight 1.6s ease-in-out infinite;
+}
+
+.conflict-resolve .merge-arrow {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+  padding: 0 2px;
+}
+
+.conflict-resolve .card-merged {
+  width: 46px;
+  animation: mergedAppear 1.6s ease-in-out infinite;
+}
+
+@keyframes mergeLeft {
+  0%, 40% { transform: translateX(0); opacity: 1; }
+  70% { transform: translateX(8px); opacity: 0.4; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes mergeRight {
+  0%, 40% { transform: translateX(0); opacity: 1; }
+  70% { transform: translateX(-8px); opacity: 0.4; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes mergedAppear {
+  0%, 40% { opacity: 0.4; transform: scale(0.92); }
+  70%, 90% { opacity: 1; transform: scale(1.04); }
+  100% { opacity: 0.4; transform: scale(0.92); }
+}
+
+/* ========================================
+   STAGE 3: REQUIREMENT STRUCTURING
+   ======================================== */
+
+.structuring {
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 120px;
+}
+
+.structuring .card-source {
+  width: 80px;
+  animation: sourceGlow 1.6s ease-in-out infinite alternate;
+}
+
+.split-cards {
+  display: flex;
+  gap: 6px;
+  animation: splitAppear 1.6s ease-in-out infinite;
+}
+
+.card-small {
+  width: 30px;
+  padding: 5px 6px;
+}
+
+@keyframes sourceGlow {
+  from { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+  to { box-shadow: 0 0 10px 2px rgba(255,255,255,0.12); }
+}
+
+@keyframes splitAppear {
+  0%, 30% { opacity: 0.3; transform: translateY(-4px); }
+  60%, 100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ========================================
+   STAGE 4: REQUIREMENT CLASSIFICATION
+   ======================================== */
+
+.classification {
+  flex-direction: column;
+  gap: 5px;
+  width: 110px;
+}
+
+.tagged-card {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 8px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 5px;
+  animation: tagSlideIn 0.5s ease both;
+}
+
+.tagged-card .card-line {
+  flex: 1;
+  height: 2px;
+  margin: 0;
+}
+
+.tagged-card .card-line.short {
+  display: none;
+}
+
+.tag {
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 3px;
+  padding: 1px 4px;
+  white-space: nowrap;
+}
+
+@keyframes tagSlideIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* ========================================
+   STAGE 5: ITERATIVE REFINEMENT
+   ======================================== */
+
+.refinement {
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 110px;
+}
+
+.card-final {
+  width: 88px;
+  position: relative;
+  overflow: visible;
+  animation: finalStabilize 2s ease-in-out infinite;
+}
+
+.refine-glow {
+  position: absolute;
+  inset: -6px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  animation: refineGlow 2s ease-in-out infinite;
+}
+
+.check-ring {
+  animation: checkAppear 0.6s ease forwards;
+}
+
+@keyframes finalStabilize {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+  50% { box-shadow: 0 0 14px 3px rgba(255,255,255,0.1); }
+}
+
+@keyframes refineGlow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes checkAppear {
+  from { opacity: 0; transform: scale(0.6); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

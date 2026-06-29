@@ -1,0 +1,593 @@
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.editor-page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+}
+/* menu bar */
+.menu-bar-container {
+  background: #2b579a;
+  color: white;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.menu-bar-left-parent-div {
+  position: relative;
+}
+.left-menu-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+    border-radius: 4px;
+
+}
+.parent-menu-btns {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  min-width: 120px;
+  margin-top: 4px;
+}
+
+.child-menu-btn {
+  width: 100%;
+  padding: 8px 16px;
+  border: none;
+  background: white;
+  text-align: left;
+  cursor: pointer;
+  color: #333;
+  font-size: 14px;
+}
+.child-menu-btn:hover {
+  background-color: rgb(240, 240, 247);
+}
+
+/** title bar */
+.title-bar-div {
+  display: flex;
+  align-items: center;
+  float: right;
+  justify-content: space-between;
+  flex: 1;
+}
+.title-box {
+  font-size: 14px;
+  font-weight: 400;
+  padding: 5px 20px;
+  border-radius: 4px;
+}
+
+.title-box-btn-container {
+  display: flex;
+  gap: 8px;
+  justify-items: center;
+
+}
+.title-box-btn {
+  padding: 6px 16px;
+  background: #2b579a;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+    align-items: center;
+    gap: 7px;
+}
+.title-box-btn:hover, .left-menu-btn:hover, .title-box:hover{
+  background: #1e3d6a;
+}
+/* toolbar */
+.toolbar-container {
+  background:  rgb(235, 235, 246);
+  padding: 8px 16px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+/*undo/redo*/
+.undo-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/*font control*/
+.font-control {
+  padding: 4px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+
+  cursor: pointer;
+}
+.font-family-control {
+  width: 140px;
+  height: 30px;
+}
+.font-size-control {
+  min-width: 60px;
+}
+
+/*text formatting*/
+.text-format-parent-div,
+.colors-parent-div,
+.font-control-div,
+.undo-redo-div,
+.alignment-parent-div,
+.list-parent-div,
+.zoom-parent-div {
+  
+  display: flex;
+  gap: 4px;
+  padding-right: 12px;
+  border-right: 1px solid #ddd;
+}
+.text-format-child-btn,
+.alignment-child-btn,
+.list-chid-btn {
+    background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 16px;
+}
+/*colors div*/
+.colors-child-btn {
+  background: transparent;
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  justify-self: center;
+}
+/*editor area*/
+.editor-area-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 40px 0;
+  display: flex;
+  justify-content: center;
+  background:  rgb(224, 224, 231);
+}
+.simulated-pages-div {
+  position: relative;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding-top: 40px;
+  padding-bottom: 40px;
+  overflow: visible;
+  height: max-content;
+}
+.simulated-page {
+  position: absolute;
+  border-left: 1px dashed rgba(200, 200, 200, 0.3);
+  border-right: 1px dashed rgba(200, 200, 200, 0.3);
+  pointer-events: none;
+  z-index: 1;
+}
+.simulated-page-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-attachment: local;
+  pointer-events: none;
+}
+.editor-content-over-pages {
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  background: transparent;
+  line-height: 1.6;
+  position: relative;
+  z-index: 2;
+  height: auto;
+}
+.page-number-badge {
+  position: absolute;
+  font-size: 12px;
+  color: #666;
+  opacity: 0.7;
+  pointer-events: none;
+}
+/* Status Bar */
+.status-bar-container {
+  background:   rgb(235, 235, 246);
+  color: rgb(71, 71, 71);
+  padding: 0px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.status-bar{
+   display: flex; 
+   gap: 20px; 
+   font-size: 12px;
+   padding: 3px;
+}
+
+
+.icon-sizes{
+  width: 15px;
+  height: 20px;
+  padding: 0;
+}
+.zoom-child-div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #666;
+  margin: 0 4px;
+}
+
+.ProseMirror {
+  outline: none;
+  border: none;
+}
+
+.ProseMirror:focus {
+  outline: none;
+  border: none;
+}
+
+.ProseMirror ul {
+  list-style-type: disc;
+}
+
+.ProseMirror ol {
+  list-style-type: decimal;
+}
+
+.ProseMirror li {
+  display: list-item;
+}
+
+
+.editor-area-container{
+  margin-right: 4px;
+}
+.editor-area-container::-webkit-scrollbar {
+  width: 10px;
+}
+
+.editor-area-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.editor-area-container::-webkit-scrollbar-thumb {
+  background-color: rgba(120, 120, 120, 0.4);
+  border-radius: 10px;
+}
+
+.editor-area-container::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(120, 120, 120, 0.6);
+}
+
+/* ── Title ─────────────────────────────────────────── */
+.document-editor h1 {
+  font-size: 25px;
+  margin-bottom: 20pt;
+  text-align: center;
+}
+
+/* ── Nested numbered sections ──────────────────────── */
+.document-editor ol {
+  counter-reset: item;
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.document-editor ol > li {
+  display: block;
+  position: relative;
+  margin: 0.6em 0;
+  padding-left: 2.5em;
+}
+
+.document-editor ol > li::before {
+  content: counters(item, ".") " ";
+  counter-increment: item;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* Level sizing */
+.document-editor ol > li { --level: 1; font-size: 18px; }
+.document-editor ol > li > ol > li { --level: 2; font-size: 16px; }
+.document-editor ol > li > ol > li > ol > li { --level: 3; font-size: 14px; }
+.document-editor ol > li > ol > li > ol > li > ol > li { --level: 4; font-size: 13px; }
+
+/* Indent nested levels */
+.document-editor ol > li > ol { padding-left: 1.5em; margin-top: 0.4em; }
+.document-editor ol > li > ol > li > ol { padding-left: 1.5em; }
+.document-editor ol > li > ol > li > ol > li > ol { padding-left: 1.5em; }
+
+/* ── Bullet lists (requirements, overview) ─────────── */
+.document-editor ul {
+  list-style: disc;
+  padding-left: 2em;
+  margin: 0.5em 0;
+  counter-reset: none;
+}
+
+.document-editor ul > li {
+  display: list-item;
+  position: static;
+  padding-left: 0;
+  font-size: inherit;
+}
+
+.document-editor ul > li::before {
+  content: none !important;
+}
+
+/* UL inside OL must never inherit OL counter behavior */
+.document-editor ol ul {
+  counter-reset: none !important;
+  list-style: disc !important;
+  padding-left: 2em;
+}
+
+.document-editor ol ul li {
+  display: list-item !important;
+  position: static !important;
+}
+
+.document-editor ol ul li::before {
+  content: none !important;
+}
+
+/* ── Paragraphs ────────────────────────────────────── */
+.document-editor p {
+  margin: 0.4em 0 0.8em 0;
+  line-height: 1.6;
+}
+
+.autocomplete {
+  color: grey;
+  opacity: 0.5;
+  pointer-events: none; /* don't block typing */
+}
+
+/* Custom Context Menu  for moving text to llm*/
+#customMenu{
+  position: absolute;
+  display: none;
+  background: var(--grey-light);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  border: 2px solid white;
+  z-index: 1000;
+}
+#customMenu:hover {
+  background: var(--grey-light);
+  border: 2px solid var(--grey-dark);
+
+}
+
+#sendToLLM{
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+/* srs loading box */
+.editor-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  font-size: 16px;
+  color: #666;
+  gap: 10px;
+  position: absolute;
+}
+
+.back-btn-editor{
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: inherit;
+  color: white;
+  padding: 6px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  background-color: #1e3d6a;
+}
+.back-btn-editor:hover{
+  background-color: #04285b;
+}
+
+
+/* ── IeeeTitlePage.css ─────────────────────────────────────────────────── */
+
+.title-page-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-family: "Times New Roman", Times, serif;
+  color: #000;
+  background-color: #fff;
+  box-sizing: border-box;
+  font-weight: 700;
+}
+
+/* ── Rules ────────────────────────────────────────────────────────────── */
+
+.title-page-top-rule {
+  border: none;
+  border-top: 2px solid #000;
+  margin: 0 0 60px 0;
+}
+
+.title-page-bottom-rule {
+  border: none;
+  border-top: 1px solid #000;
+  margin: 0;
+}
+
+/* ── Body ─────────────────────────────────────────────────────────────── */
+
+.title-page-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* ── Every editable block ─────────────────────────────────────────────── */
+
+.title-page-editable {
+  outline: none;
+  cursor: text;
+  caret-color: #000;
+  display: block;
+  width: 100%;
+  text-align: right;
+  white-space: pre-wrap;       /* preserves \n line breaks in heading */
+  min-width: 40px;             /* prevents collapse when empty */
+}
+
+
+
+/* placeholder via data attribute */
+.title-page-editable:empty::before {
+  content: attr(data-placeholder);
+  color: #bbb;
+  pointer-events: none;
+}
+
+/* ── Heading ──────────────────────────────────────────────────────────── */
+
+.title-page-heading {
+  font-size: 30pt;            
+  font-weight: bold;
+  line-height: 1.3;
+  margin: 0 0 40px 0;
+}
+
+/* ── "for" label ──────────────────────────────────────────────────────── */
+
+.title-page-for {
+  font-size: 15pt;            
+  margin: 0 0 14px 0;
+}
+
+/* ── Project name ─────────────────────────────────────────────────────── */
+
+.title-page-project {
+  font-size: 22pt;
+  font-weight: bold;
+  margin: 0 0 56px 0;
+  
+}
+
+/* ── Meta rows ────────────────────────────────────────────────────────── */
+
+.title-page-meta {
+  font-size: 13pt;
+  margin: 15px 0 28px 0;
+}
+
+.title-page-meta:last-of-type {
+  margin-bottom: 0;
+}
+
+/* ── Copyright footer ─────────────────────────────────────────────────── */
+
+.title-page-copyright {
+  font-size: 7pt;
+  color: #333;
+  text-align: center;
+  font-style: italic;
+  padding: 5px 0 2px;
+  outline: none;
+  cursor: text;
+  caret-color: #000;
+  white-space: pre-wrap;       /* ADDED: consistency with editable blocks */
+}
+
+
+.title-page-copyright:empty::before {
+  content: attr(data-placeholder);
+  color: #bbb;
+  pointer-events: none;
+}
+
+
+.title-page-region {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.title-page-region ~ .editor-content-over-pages {
+  pointer-events: none; /* blocked where title page sits */
+}
+
+
+/* rtm section */
+/* =========================
+   RTM / TABLE FIX
+   ========================= */
+
+.document-editor table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-family: inherit;
+}
+
+.document-editor th,
+.document-editor td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  vertical-align: top;
+  font-size: 12pt;
+}
+
+.document-editor th {
+  background: #f2f2f2;
+  font-weight: bold;
+}
+
+.document-editor tr:nth-child(even) {
+  background: #fafafa;
+}

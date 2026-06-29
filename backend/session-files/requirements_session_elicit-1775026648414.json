@@ -1,0 +1,27 @@
+{
+  "baseline": "Project Title: Fitness Tracker\n\nDescription: A system that helps the user with their fitness goals, including exercise guidance, diet plans, and calorie counting.",
+  "requirements_list": [
+    "provide exercise guidance",
+    "provide exercise routines",
+    "perform calorie counting",
+    "provide diet plans",
+    "have only one type of base user",
+    "use standard equations and functions for fitness tracking",
+    "be a standalone system"
+  ],
+  "baseline_collected": true,
+  "aspects_covered": [
+    "User roles and authentication",
+    "User interface"
+  ],
+  "baseline_aspects": [
+    "User roles and authentication",
+    "Core functionality",
+    "Data management",
+    "Performance requirements",
+    "Security considerations",
+    "Integration needs",
+    "User interface"
+  ],
+  "timestamp": "2026-04-01T12:00:26.750773"
+}

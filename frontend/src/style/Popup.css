@@ -1,0 +1,114 @@
+/* Overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(31, 41, 55, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeIn 0.25s ease-out;
+}
+
+/* Popup Card */
+.popup-content {
+  background: white;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 500px;
+  padding: 2rem;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  animation: slideUp 0.3s ease-out;
+}
+
+.popup-content h2 {
+  color: var(--blue-darkest);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.popup-content p {
+  color: var(--grey-dark);
+  margin-bottom: 1.5rem;
+}
+
+/* File input */
+.popup-file-input {
+  margin: 1rem 0;
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 10px;
+  border: 1px solid var(--grey-light);
+  background: var(--grey-lightest);
+  transition: all 0.2s ease;
+  font-size: 1rem;
+}
+
+.popup-file-input:hover {
+  border-color: var(--blue-dark);
+}
+
+/* Buttons */
+.popup-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.popup-btn {
+  padding: 0.8rem 1.6rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.popup-btn.upload {
+  background-color: var(--blue-dark);
+  color: white;
+}
+
+.popup-btn.upload:hover {
+  background-color: rgba(4, 104, 132, 0.85);
+}
+
+.popup-btn.cancel {
+  background-color: var(--grey-light);
+  color: var(--blue-darkest);
+}
+
+.popup-btn.cancel:hover {
+  background-color: rgb(198, 203, 204);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+.elicit-btn{
+  color: white;
+  background-color: var(--blue-dark);
+}

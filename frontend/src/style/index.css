@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap");
+
+:root {
+  --green-dark: rgb(0, 168, 151);
+  --green-medium: rgba(0, 168, 151, 0.2);
+  --green-light: rgba(0, 168, 151, 0.1);
+  --black: rgb(0, 0, 0);
+  --blue-darkest: rgb(31, 41, 55);
+  --blue-dark: rgb(13, 68, 145);
+  --blue-medium: rgb(17, 79, 212);
+  --blue-dark-hover: rgb(56, 89, 175);
+  --blue-light: rgba(48, 50, 53, 0.1);
+  --grey-dark: rgb(101, 117, 139);
+  --grey-medium: rgb(161, 161, 170);
+  --grey-light: rgb(229, 231, 235);
+  --grey-light2: rgb(191, 239, 223);
+  --grey-lightest: rgba(243, 244, 246, 0.3);
+
+  --conf-color: rgb(31, 88, 169);
+  --neut-color: rgb(0, 168, 151);
+  --theme-gradient: linear-gradient(
+    135deg,
+    var(--conf-color) 30%,
+    var(--neut-color) 70%
+  );
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.13);
+  --text-primary: rgba(255, 255, 255, 0.95);
+  --text-secondary: rgba(255, 255, 255, 0.65);
+  --text-muted: rgba(255, 255, 255, 0.4);
+}
+body {
+  user-select: none; /* disable text selection */
+  -webkit-user-select: none; /* for Safari/Chrome */
+  -moz-user-select: none; /* for Firefox */
+  -ms-user-select: none; /* for old IE/Edge */
+  font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+}
+html {
+  scroll-behavior: smooth;
+}

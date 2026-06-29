@@ -1,0 +1,67 @@
+:root {
+  --dup-color: rgba(74, 85, 100, 1); /* Duplicate active bg (gold) */
+  --btn-bg: #ffffff;
+  --btn-text: #0b2540;
+}
+
+/* base tab button */
+.tab-btn {
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: 2px solid transparent;
+  border-radius: 999px; /* pill */
+  transition: all 150ms ease-in-out;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+/* Hover: only change border color (per-tab) */
+.tab-btn.Duplicate:hover {
+  border-color: var(--dup-color);
+} /* gold border */
+.tab-btn.Conflict:hover {
+  border-color: var(--conf-color);
+} /* red border */
+.tab-btn.Neutral:hover {
+  border-color: var(--neut-color);
+} /* teal border */
+
+/* Focus outline to be subtle but visible for keyboard users */
+.tab-btn:focus {
+  outline: 3px solid rgba(0, 0, 0, 0.05);
+  outline-offset: 2px;
+}
+
+/* Active tab (background changes) - per-tab */
+.tab-btn.active-tab.Duplicate {
+  background-color: var(--dup-color);
+  color: #fff;
+  border-color: var(--dup-color);
+}
+.tab-btn.active-tab.Conflict {
+  background-color: var(--conf-color);
+  color: #fff;
+  border-color: var(--conf-color);
+}
+.tab-btn.active-tab.Neutral {
+  background-color: var(--neut-color);
+  color: #fff;
+  border-color: var(--neut-color);
+}
+
+/* slightly lift active tab for emphasis */
+.tab-btn.active-tab {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+/* ensure Bootstrap btn styles don't override critical visuals */
+.tab-btn.btn {
+  background-color: transparent;
+}
+
+.back-btn{
+  background: var(--grey-dark);
+  left: 1rem;
+}

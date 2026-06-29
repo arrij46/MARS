@@ -1,0 +1,7 @@
+# frontend dependencies
+axios 
+react-router-dom
+pdfjs-dist 
+mammoth
+jspdf
+html2canvas
